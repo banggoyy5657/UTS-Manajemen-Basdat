@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  postgres_yogadwi:
+    image: postgres:15
+    container_name: postgres_yogadwi
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ifunggul
+      POSTGRES_DB: postgres
+    ports:
+      - "22141:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin_yogadwi:
+    image: dpage/pgadmin4
+    container_name: pgadmin_yogadwi
+    environment:
+      PGADMIN_DEFAULT_EMAIL: yogadwi@example.com
+      PGADMIN_DEFAULT_PASSWORD: ifunggul
+    ports:
+      - "44141:80"
+    depends_on:
+      - postgres_yogadwi
+
+volumes:
+  postgres_data:
